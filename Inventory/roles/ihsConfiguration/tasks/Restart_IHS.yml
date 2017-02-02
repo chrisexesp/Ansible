@@ -1,0 +1,7 @@
+ - name: Restart Admin Server
+   shell: "{{IHS_Path}}/bin/adminctl restart"
+
+ - name: Restart Apache
+   shell: "{{IHS_Path}}/bin/apachectl restart"
+ 
+

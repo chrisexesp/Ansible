@@ -1,0 +1,17 @@
+ - name: Append httpd.conf
+   lineinfile:
+        dest: "{{IHS_Path}}/conf/httpd.conf"
+        line: "{{ item }}"
+   with_items: 
+        - LoadModule ibm_ssl_module modules/mod_ibm_ssl.so
+        - Listen 443
+        - <VirtualHost *:443>
+        -      ServerName *:443
+        -      SSLEnable
+        -      SSLClientAuth none
+        -      Keyfile      "{{IHSCFG_KeyDBFile}}"
+        -      SSLStashfile "{{IHSCFG_KeyDBFile | replace('kdb', 'sth')}}"
+        -      ErrorLog   "|{{IHS_Path}}/bin/rotatelogs /home/logs/ihs/443_ssl_error_%Y%m%d.log 86400"
+        -      CustomLog  "|{{IHS_Path}}/bin/rotatelogs /home/logs/ihs/443_ssl_access_%Y%m%d.log 86400" combined
+        - </VirtualHost>
+

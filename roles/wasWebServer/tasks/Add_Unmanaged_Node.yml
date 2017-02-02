@@ -1,0 +1,10 @@
+ - name: Remove Old Response File
+   file: path='/tmp/rsp/addUnmanagedNode.py' state=absent
+
+ - name: Create Add Unmanaged Node Response File
+   template:
+     src: addUnmanagedNode.conf.j2
+     dest: /tmp/rsp/addUnmanagedNode.py
+
+ - name: Add Unmanaged Node
+   shell: "{{WASND_Path}}/bin/wsadmin.sh -lang jython -f /tmp/rsp/addUnmanagedNode.py"

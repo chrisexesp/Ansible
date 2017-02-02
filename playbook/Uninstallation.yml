@@ -1,0 +1,19 @@
+---
+ - hosts: wasnd
+   remote_user: root
+   
+   tasks:
+     
+     name: Uninstall WAS Plugins
+     shell: /opt/IBM/InstallationManager/eclipse/tools/imcl uninstall com.ibm.websphere.PLG.v85_8.5.5009.20160225_0435
+
+     name: Uninstall WAS Toolbox
+     shell: /opt/IBM/InstallationManager/eclipse/tools/imcl uninstall com.ibm.websphere.WCT.v85_8.5.5009.20160225_0435
+
+     name: Uninstall IHS
+     shell: /opt/IBM/InstallationManager/eclipse/tools/imcl uninstall com.ibm.websphere.IHS.v85_8.5.5009.20160225_0435
+     shell: rm -rf {{IHS_Path}}
+
+     name: Uninstall WAS ND
+     shell: /opt/IBM/InstallationManager/eclipse/tools/imcl uninstall com.ibm.websphere.ND.v85_8.5.5009.20160225_0435
+

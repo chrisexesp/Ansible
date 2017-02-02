@@ -1,0 +1,14 @@
+ - name: Create Log File Directory
+   file: path='{{WAS_LogPath}}' state=directory
+
+ - name: Remove Old Response File
+   file: path='/tmp/rsp/replaceLog.py' state=absent
+
+ - name: Create Replace Log Location Response File
+   template:
+     src: replaceLog.conf.j2
+     dest: /tmp/rsp/replaceLog.py
+
+ - name: Replace Log Location
+   shell: "{{WASND_Path}}/bin/wsadmin.sh -lang jython -f /tmp/rsp/replaceLog.py"
+

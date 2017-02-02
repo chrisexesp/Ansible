@@ -1,0 +1,7 @@
+---
+ - hosts: nfsclient
+   remote_user: root
+   
+   roles:
+     - nfsclient
+

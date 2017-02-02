@@ -1,0 +1,8 @@
+ - name: Edit Admin.conf
+   replace:
+      dest: "{{IHS_Path}}/conf/admin.conf"
+      regexp: localhost
+      replace: "{{IHSCFG_Hostname}}"
+      owner: "{{IHSUser}}"
+      group: "{{IHSGroup}}"
+      mode: 0755

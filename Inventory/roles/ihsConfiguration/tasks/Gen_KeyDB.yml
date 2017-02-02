@@ -1,0 +1,14 @@
+ - name: remove old certs
+   shell: rm -rf /home/certs/ihs/*
+
+ - name: Generate Key DB file
+   shell: "{{IHS_Path}}/bin/gskcapicmd -keydb -create -db {{IHSCFG_KeyDBFile}} -pw {{IHSCFG_Password}} -type cms -expire 7300 -stash"
+
+ - name: Generate Key DB cert 
+   shell: "{{IHS_Path}}/bin/gskcapicmd -cert -create -db {{IHSCFG_KeyDBFile}} -type cms -stashed -label \"{{IHSCFG_HostKeyDB}}\" -dn \"CN={{IHSCFG_HostKeyDB}},OU=IT Dept,OU=Bank of China Macau Branch,O=BANK OF CHINA LIMITED,L=Macau,ST=Macau,C=MO\" -size 2048 -x509version 3 -default_cert yes -expire 7300 -sigalg SHA256WithRSA"
+
+ - name: Verify KeyDB
+   shell: "{{IHS_Path}}/bin/gskcapicmd -cert -list -db {{IHSCFG_KeyDBFile}} -type cms -stashed"
+
+ - name: Verify KeyDB 2
+   shell: "{{IHS_Path}}/bin/gskcapicmd -cert -details -db {{IHSCFG_KeyDBFile}} -type cms -stashed -label {{IHSCFG_HostKeyDB}}"

@@ -1,0 +1,17 @@
+HostName: node2
+IHS_Connection_Type: local
+IHS_HostName: node2
+IHS_Password: pco12345
+IHSCFG_HostCert1: node2.bocmacau.com
+IHSCFG_HostCert2: node2.bocmo.com
+IHSCFG_HostKeyDB: pco.sit.bocmo.com
+IHSCFG_Hostname: node2
+IHSCFG_KeyDBFile: /home/certs/ihs/sit_pco_ihs.kdb
+IHSCFG_Password: pco12345
+IHSCFG_WASHost: node2
+IHSCFG_WebServerName: webserver2
+WAS_LogPath: /home/logs/was/server2
+WAS_ProfileName: AppSrv02
+WAS_ProfilePath: /opt/IBM/WebSphere/AppServer/profiles/AppSrv02
+WAS_ServerName: server2
+WAS_WebServerName: webserver2

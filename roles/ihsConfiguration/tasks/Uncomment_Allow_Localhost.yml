@@ -1,0 +1,8 @@
+ - name: uncomment Allow from 127.0.0.1
+   replace:
+      dest: "{{IHS_Path}}/conf/httpd.conf"
+      regexp: "# Allow from 127.0.0.1"
+      replace: Allow from 127.0.0.1
+      owner: "{{IHSUser}}"
+      group: "{{IHSGroup}}"
+      mode: 0755

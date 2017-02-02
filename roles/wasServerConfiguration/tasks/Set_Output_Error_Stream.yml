@@ -1,0 +1,11 @@
+ - name: Remove Old Response File
+   file: path='/tmp/rsp/setOutputStream.py' state=absent
+
+ - name: Create Set Output and Error Stream Response File
+   template:
+     src: setOutputStream.conf.j2
+     dest: /tmp/rsp/setOutputStream.py
+
+ - name: Set Output and Error Stream
+   shell: "{{WASND_Path}}/bin/wsadmin.sh -lang jython -f /tmp/rsp/setOutputStream.py"
+

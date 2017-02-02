@@ -1,0 +1,17 @@
+serverName = "{{WAS_WebServerName}}"
+serverID = AdminConfig.getid("/Server:"+serverName)
+
+try:
+ AdminConfig.showAttribute(serverID, 'name')
+ print "#"
+ print "Web server {{WAS_WebServerName}} exists"
+ print "#"
+except:
+ if "{{HostName}}" == "{{IHS_HostName}}":
+  AdminTask.createWebServer('{{IHS_HostName}}Node02', '[-name {{WAS_WebServerName}} -templateName IHS -serverConfig [-webPort 443 -serviceName -webInstallRoot {{IHS_Path}} -webProtocol HTTP -configurationFile -errorLogfile -accessLogfile -pluginInstallRoot {{WAS_Plugins_Path}} -webAppMapping ALL] -remoteServerConfig [-adminPort 8008 -adminUserID {{IHSUser}} -adminPasswd {{IHS_Password}} -adminProtocol HTTP]]')
+  AdminTask.listServers('[-serverType WEB_SERVER ]')
+  AdminConfig.save()
+ else:
+  AdminTask.createWebServer('{{IHS_HostName}}{{NodeName}}', '[-name {{WAS_WebServerName}} -templateName IHS -serverConfig [-webPort 443 -serviceName -webInstallRoot {{IHS_Path}} -webProtocol HTTP -configurationFile -errorLogfile -accessLogfile -pluginInstallRoot {{WAS_Plugins_Path}} -webAppMapping ALL] -remoteServerConfig [-adminPort 8008 -adminUserID {{IHSUser}} -adminPasswd {{IHS_Password}} -adminProtocol HTTP]]')
+  AdminTask.listServers('[-serverType WEB_SERVER ]')
+  AdminConfig.save()

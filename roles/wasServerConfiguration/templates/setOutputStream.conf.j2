@@ -1,0 +1,12 @@
+s1 = AdminConfig.getid('/Cell:{{WAS_Manager_CellName}}/Node:{{HostName}}{{NodeName}}/Server:{{WAS_ServerName}}/')
+s1o = AdminConfig.showAttribute(s1, 'outputStreamRedirect')
+s1e = AdminConfig.showAttribute(s1, 'errorStreamRedirect')
+print 'BEFORE:'
+AdminConfig.show(s1o)
+AdminConfig.show(s1e)
+rc = AdminConfig.modify(s1o,[['rolloverType','BOTH'],['rolloverSize',10],['rolloverPeriod',24],['baseHour',1],['maxNumberOfBackupFiles',31]])
+rc = AdminConfig.modify(s1e,[['rolloverType','BOTH'],['rolloverSize',10],['rolloverPeriod',24],['baseHour',1],['maxNumberOfBackupFiles',31]])
+print 'AFTER:'
+AdminConfig.show(s1o)
+AdminConfig.show(s1e)
+AdminConfig.save()

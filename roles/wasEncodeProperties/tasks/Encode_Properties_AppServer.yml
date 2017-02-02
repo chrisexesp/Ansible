@@ -1,0 +1,2 @@
+ - name: Encode AppServer Password
+   shell: /tmp/rsp/encode_pass.ksh {{WAS_User_Password}} BASE

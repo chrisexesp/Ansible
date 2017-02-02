@@ -1,0 +1,4 @@
+IBMIM_Installer_Path: /home/mnt/IBMIM
+Response_Template_File_Directory: /home/mnt/rsp
+WAS_Plugins_Path: /opt/IBM/WebSphere/Plugins
+WAS_Toolbox_Path: /opt/IBM/WebSphere/Toolbox

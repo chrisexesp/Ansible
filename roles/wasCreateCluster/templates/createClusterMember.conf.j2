@@ -1,0 +1,13 @@
+serverName = "{{WAS_ServerName}}"
+serverID = AdminConfig.getid("/Server:"+serverName)
+
+try:
+ AdminConfig.showAttribute(serverID, 'name')
+ print "{{WAS_ServerName}} exists"
+except:
+ if "{{HostName}}" == "{{WAS_Manager_HostName}}":
+  AdminTask.createClusterMember('[-clusterName {{WAS_ClusterName}} -memberConfig [-memberNode {{HostName}}{{NodeName}} -memberName {{WAS_ServerName}} -memberWeight {{WASND_ClusterMember_Weight}} -genUniquePorts true -replicatorEntry false] -firstMember [-templateName default -nodeGroup DefaultNodeGroup -coreGroup DefaultCoreGroup -resourcesScope cluster]]')
+  AdminConfig.save()
+ else:
+  AdminTask.createClusterMember('[-clusterName {{WAS_ClusterName}} -memberConfig [-memberNode {{HostName}}{{NodeName}} -memberName {{WAS_ServerName}} -memberWeight {{WASND_ClusterMember_Weight}} -genUniquePorts true -replicatorEntry false]]')
+  AdminConfig.save()

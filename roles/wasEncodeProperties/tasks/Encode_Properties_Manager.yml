@@ -1,0 +1,3 @@
+ - name: Encode Manager Password
+   shell: /tmp/rsp/encode_pass.ksh {{WASND_User_Password}} ND
+   when: inventory_hostname in groups['wasndManager']

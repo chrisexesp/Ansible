@@ -1,0 +1,28 @@
+ - name: Remove Old Response File
+   file: path='/tmp/rsp/encode_pass.ksh' state=absent
+
+ - name: Copy Response Template File
+   copy: 
+     src: "{{Response_Template_File_Directory}}/encode_pass.ksh"
+     dest: /tmp/rsp/encode_pass.ksh
+     owner: root
+     mode: 0755
+
+ - name: Edit Response File 1
+   replace: 
+    dest: /tmp/rsp/encode_pass.ksh
+    regexp: WASND_ProfilePath
+    replace: "{{WASND_ProfilePath}}"
+   when: inventory_hostname in groups['wasndManager']
+
+ - name: Edit Response File 2
+   replace: 
+    dest: /tmp/rsp/encode_pass.ksh
+    regexp: WAS_ProfilePath
+    replace: "{{WAS_ProfilePath}}"
+
+ - name: Edit Response File 3
+   replace: 
+    dest: /tmp/rsp/encode_pass.ksh
+    regexp: WAS_User
+    replace: "{{WAS_User}}"

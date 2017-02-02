@@ -1,0 +1,2 @@
+ - include: Replace_Log.yml
+ - include: Set_Output_Error_Stream.yml

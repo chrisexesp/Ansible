@@ -1,0 +1,4 @@
+NFS_Server_IP: 192.168.11.133
+NFS_Server_HostName: node1
+NFS_Server_Mount_Directory: /home/mnt
+NFS_Client_Mount_Directory: /home/mnt

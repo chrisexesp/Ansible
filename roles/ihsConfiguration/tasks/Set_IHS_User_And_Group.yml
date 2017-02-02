@@ -1,0 +1,15 @@
+ - name: Create IHS Group
+   group: 
+     name: "{{IHSGroup}}"
+     state: present
+
+ - name: Create IHS User
+   user:
+     name: "{{IHSUser}}"
+     password: "{{IHSCFG_Password}} --method=SHA-512"
+     group: "{{IHSGroup}}"
+
+ - name: Change IHS User Password
+   shell: echo "{{IHSUser}}:{{IHSCFG_Password}}" | chpasswd -c SHA512
+    
+# - user: name=ihsadmin state=absent remove=yes

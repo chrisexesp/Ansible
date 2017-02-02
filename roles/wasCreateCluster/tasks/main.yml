@@ -1,0 +1,4 @@
+# - include: /etc/ansible/roles/wasStart_Stop/tasks/Start_Node.yml
+# - include: /etc/ansible/roles/wasStart_Stop/tasks/Start_Manager.yml
+ - include: Create_Cluster.yml
+ - include: Create_Cluster_Member.yml

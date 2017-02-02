@@ -1,0 +1,8 @@
+---
+ - hosts: wasnd
+   remote_user: root
+   tasks:
+     - include: /etc/ansible/roles/wasStart_Stop/tasks/Stop_Manager.yml
+     - include: /etc/ansible/roles/wasStart_Stop/tasks/Stop_Node.yml
+     - shell: "{{WASND_Path}}/bin/manageprofiles.sh -deleteAll"
+     - files: path='{{WASND_Path}}/profiles' state=absent

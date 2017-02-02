@@ -1,0 +1,26 @@
+ - name: Replace User
+   replace:
+      dest: "{{IHS_Path}}/conf/httpd.conf"
+      regexp: User nobody
+      replace: User {{IHSUser}}
+      owner: "{{IHSUser}}"
+      group: "{{IHSGroup}}"
+      mode: 0755
+
+ - name: Replace Group
+   replace:
+      dest: "{{IHS_Path}}/conf/httpd.conf"
+      regexp: Group nobody
+      replace: Group {{IHSGroup}}
+      owner: "{{IHSUser}}"
+      group: "{{IHSGroup}}"
+      mode: 0755
+
+ - name: Replace Plugins Module
+   replace: 
+      dest: "{{IHS_Path}}/conf/httpd.conf"
+      regexp: LoadModule was_ap22_module \$\{WAS_PLUGIN_DRIVER\}
+      replace: LoadModule was_ap22_module {{WAS_Plugins_Path}}/bin/64bits/mod_was_ap22_http.so
+      owner: "{{IHSUser}}"
+      group: "{{IHSGroup}}"
+      mode: 0755

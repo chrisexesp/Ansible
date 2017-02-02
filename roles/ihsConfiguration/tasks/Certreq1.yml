@@ -1,0 +1,11 @@
+ - name: Cert req 1
+   shell: "{{IHS_Path}}/bin/gskcapicmd -certreq -create -db {{IHSCFG_KeyDBFile}} -type cms -stashed -label {{IHSCFG_HostCert1}} -dn \"CN={{IHSCFG_HostCert1}},OU=Bank of China Macau Branch,O=BANK OF CHINA LIMITED,L=Macau,ST=Macau,C=MO\" -size 2048 -sigalg SHA256WithRSA -file /home/certs/ihs/{{IHSCFG_HostCert1}}_certreq.arm"
+ 
+ - name: Verify certreq 1
+   shell: "{{IHS_Path}}/bin/gskcapicmd -certreq -list -db {{IHSCFG_KeyDBFile}} -type cms -stashed"
+
+ - name: Verify certreq 2
+   shell: "{{IHS_Path}}/bin/gskcapicmd -certreq -details -db {{IHSCFG_KeyDBFile}} -type cms -stashed -label {{IHSCFG_HostCert1}}"
+
+ - name: Verify certreq 3
+   shell: cat /home/certs/ihs/{{IHSCFG_HostCert1}}_certreq.arm

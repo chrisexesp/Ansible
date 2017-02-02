@@ -1,0 +1,14 @@
+ - name: Add Node on Manager
+   shell: "{{WASND_Path}}/bin/addNode.sh {{WAS_Manager_HostName}} -username {{WASND_User}} -password {{WASND_User_Password}} -profileName {{WAS_ProfileName}} -includeapps; if [ $? -eq 255 ]; then {{WASND_Path}}/bin/addNode.sh {{WAS_Manager_HostName}} -username {{WASND_User}} -password {{WASND_User_Password}} -profileName {{WAS_ProfileName}} -includeapps | grep ADMU0033E; fi"
+   when: inventory_hostname in groups['wasndManager']
+
+ - name: sleep 5s
+   shell: sleep 5
+
+ - name: Add Node on Member
+   shell: "{{WASND_Path}}/bin/addNode.sh {{WAS_Manager_HostName}} -username {{WASND_User}} -password {{WASND_User_Password}} -profileName {{WAS_ProfileName}} -includeapps; if [ $? -eq 255 ]; then {{WASND_Path}}/bin/addNode.sh {{WAS_Manager_HostName}} -username {{WASND_User}} -password {{WASND_User_Password}} -profileName {{WAS_ProfileName}} -includeapps | grep ADMU0033E; fi"
+   when: inventory_hostname not in groups['wasndManager']
+
+ - name: sleep 3s
+   shell: sleep 3
+ 

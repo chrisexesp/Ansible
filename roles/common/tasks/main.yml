@@ -1,0 +1,7 @@
+ - name: Create Response File Directory
+   file: path='/tmp/rsp' state=directory
+ - include: Yum_Install_Package.yml
+ - include: IBMIM_Installation.yml
+ - include: WAS_Plugins_Installation.yml
+ - include: WAS_Toolbox_Installation.yml
+

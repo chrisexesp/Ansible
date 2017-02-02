@@ -1,0 +1,19 @@
+---
+ - name: install nfs client
+   action: yum pkg=nfs-utils state=present
+
+ - name: Ensure rpcbind is running (CentOS)
+   action: service name=rpcbind state=started enabled=yes
+
+ - name: Ensure {{NFS_Client_Mount_Directory}} directory exists
+   action: file path={{NFS_Client_Mount_Directory}} state=directory
+
+ - name: Edit Host Table
+   lineinfile:
+     dest: /etc/hosts
+     state: present
+     line: "{{NFS_Server_IP}} {{NFS_Server_HostName}}"
+     
+ - name: mount nfs
+   shell: mount -t nfs {{NFS_Server_IP}}:{{NFS_Server_Mount_Directory}} {{NFS_Client_Mount_Directory}}/
+

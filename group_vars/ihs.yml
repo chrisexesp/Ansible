@@ -1,0 +1,4 @@
+IHS_Path: /opt/IBM/HTTPServer
+IHSUser: ihsadmin
+IHSGroup: ihsgroup
+IHSCFG_ApHostTable: 192.168.11.144:node1,192.168.11.148:node2

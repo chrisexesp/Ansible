@@ -1,0 +1,17 @@
+ - name: change IHS owner
+   shell: chown -R {{IHSUser}}":"{{IHSGroup}} {{IHS_Path}}
+
+ - name: change WAS Plugins owner
+   shell: chown -R {{IHSUser}}":"{{IHSGroup}} {{WAS_Plugins_Path}}
+
+ - name: change WAS Toolbox owner
+   shell: chown -R {{IHSUser}}":"{{IHSGroup}} {{WAS_Toolbox_Path}}
+
+ - name: change IHS Permission
+   shell: chmod -R 755 {{IHS_Path}}
+
+ - name: change WAS Plugins Permission
+   shell: chmod -R 755 {{WAS_Plugins_Path}}
+
+ - name: change WAS Toolbox Permission
+   shell: chmod -R 755 {{WAS_Toolbox_Path}}

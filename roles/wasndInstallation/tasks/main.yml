@@ -1,0 +1,6 @@
+ - name: Create Response File Directory
+   file: path='/tmp/rsp' state=directory 
+
+ - include: Edit_WAS_Host_Table.yml
+ - include: WASND_Installation.yml
+ 

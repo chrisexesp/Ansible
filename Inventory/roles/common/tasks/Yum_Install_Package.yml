@@ -1,0 +1,11 @@
+ - name: yum install libpk-gtk-module.so 
+   yum:
+     name: libpk-gtk-module.so
+     state: present
+   when: ansible_distribution == 'CentOS' or ansible_distribution == 'Red Hat Enterprise Linux'
+
+ - name: yum install libcanberra-gtk-module.so
+   yum:
+     name: libcanberra-gtk-module.so
+     state: present
+   when: ansible_distribution == 'CentOS' or ansible_distribution == 'Red Hat Enterprise Linux'

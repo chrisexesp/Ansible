@@ -1,0 +1,8 @@
+ - name: Create WASND Manager Profile
+   shell:  "{{WASND_Path}}/bin/manageprofiles.sh -listProfiles | grep -w {{WASND_ProfileName}}; if [ $? -eq 0 ]; then echo The Manager Profile has been created; else {{WASND_Path}}/bin/manageprofiles.sh -create -profilePath {{WASND_ProfilePath}} -nodeProfilePath {{WAS_ProfilePath}} -adminUserName {{WASND_User}} -signingCertValidityPeriod 25 -nodeName {{WAS_Manager_HostName}}{{WASND_NodeName}} -cellNAme {{WAS_Manager_CellName}} -personalCertDN \"cn={{HostName}},ou={{WAS_Manager_CellName}},ou={{WAS_Manager_HostName}}{{WASND_NodeName}},o=IBM,c=US\" -profileName {{WASND_ProfileName}} -keyStorePassword {{WASND_User_Password}} -appServerNodeName {{WAS_Manager_HostName}}{{WASND_NodeName}} -adminPassword {{WASND_User_Password}} -enableAdminSecurity true -signingCertDN \"cn={{HostName}},ou=Root Certificate,ou={{WAS_Manager_CellName}},ou={{WAS_Manager_HostName}}{{WASND_NodeName}},o=IBM,c=US\" -omitAction defaultAppDeployAndConfig -hostName {{WAS_Manager_HostName}} -personalCertValidityPeriod 15 -serverType DEPLOYMENT_MANAGER -templatePath {{WASND_ProfileTemplatePath}}; fi"
+   when: inventory_hostname in groups['wasndManager'] 
+
+ - name: Check Manager Profile
+   shell: cat {{WASND_ProfilePath}}/logs/AboutThisProfile.txt
+   when: inventory_hostname in groups['wasndManager']
+

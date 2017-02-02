@@ -1,0 +1,9 @@
+serverName = "{{WAS_ServerName}}"
+serverID = AdminConfig.getid("/Server:"+serverName)
+
+try:
+ AdminConfig.showAttribute(serverID, 'name')
+ AdminTask.deleteServer('[-serverName {{WAS_ServerName}} -nodeName {{HostName}}{{NodeName}}]')
+ AdminConfig.save()
+except:
+ print "{{WAS_ServerName}} does not exists"

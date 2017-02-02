@@ -1,0 +1,5 @@
+ - name: Ensure {{IBMIM_Installer_Path}} directory exists
+   action: file path={{IBMIM_Installer_Path}} state=directory
+
+ - name: Install IBMIM
+   shell: if [ ! -d "/opt/IBM/InstallationManager" ]; then {{IBMIM_Installer_Path}}/installc -acceptLicense; else echo "IBMIM File System exists"; fi

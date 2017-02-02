@@ -1,0 +1,22 @@
+ - name: Remove Old Response File
+   file: path='/tmp/rsp/WASND_Installation.xml' state=absent
+
+ - name: Copy Response Template File
+   copy: 
+     src: "{{Response_Template_File_Directory}}/WASND_Installation.xml"
+     dest: /tmp/rsp/WASND_Installation.xml
+     owner: root
+     mode: 0755
+
+ - name: Edit Response File
+   replace: 
+     dest: /tmp/rsp/WASND_Installation.xml
+     regexp: WASND_Install_Path
+     replace: "{{WASND_Path}}"
+
+ - name: Install WASND
+   shell: if [ ! -d {{WASND_Path}} ]; then /opt/IBM/InstallationManager/eclipse/tools/imcl input /tmp/rsp/WASND_Installation.xml -acceptLicense -sP; else echo "WASND File System exists"; fi
+
+ - name: Validate WAS ND Installation
+   shell: "{{WASND_Path}}/bin/versionInfo.sh"
+

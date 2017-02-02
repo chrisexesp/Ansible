@@ -1,0 +1,10 @@
+ - name: Move httpd.conf to httpd.conf.bk
+   command: mv {{IHS_Path}}/conf/httpd.conf {{IHS_Path}}/conf/httpd.conf.bk
+
+ - name: Copy httpd.conf.default to httpd.conf
+   copy:
+     src: "{{IHS_Path}}/conf/httpd.conf.default"
+     dest: "{{IHS_Path}}/conf/httpd.conf"
+     owner: "{{IHSUser}}"
+     group: "{{IHSGroup}}"
+     mode: 0755

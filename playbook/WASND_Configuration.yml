@@ -1,0 +1,46 @@
+---
+ - hosts: wasnd
+   remote_user: root
+   roles:
+     - wasCreateProfile
+  
+ - hosts: wasnd
+   remote_user: root
+   serial: 1
+   roles:
+     - wasAddNode
+
+ - hosts: wasnd
+   remote_user: root
+   roles:
+     - wasEncodeProperties 
+
+ - hosts: wasnd
+   remote_user: root
+   serial: 1
+   roles:
+     - wasDeleteServer   
+
+ - hosts: wasnd
+   remote_user: root
+   serial: 1
+   roles:
+     - wasCreateCluster
+
+ - hosts: wasnd
+   remote_user: root
+   roles:
+     - wasServerConfiguration
+
+ - hosts: wasnd
+   remote_user: root
+   serial: 1
+   roles:
+     - wasWebServer
+
+ - hosts: ihs
+   remote_user: root 
+   roles:
+     - ihsConfiguration
+
+

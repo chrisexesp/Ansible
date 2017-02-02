@@ -1,0 +1,21 @@
+ - name: Remove Old Response File
+   file: path='/tmp/rsp/IHS_Installation.xml' state=absent
+
+ - name: Copy Response Template File
+   copy: 
+     src: "{{Response_Template_File_Directory}}/IHS_Installation.xml"
+     dest: /tmp/rsp/IHS_Installation.xml
+     owner: root
+     mode: 0755
+
+ - name: Edit Response File
+   replace: 
+     dest: /tmp/rsp/IHS_Installation.xml
+     regexp: IHS_Install_Path
+     replace: "{{IHS_Path}}"
+
+ - name: Install IHS
+   shell: if [ ! -d {{IHS_Path}} ]; then /opt/IBM/InstallationManager/eclipse/tools/imcl input /tmp/rsp/IHS_Installation.xml -acceptLicense -sP; else echo "IHS File System exists"; fi
+
+ - name: Validate IHS Installation
+   shell: "{{IHS_Path}}/bin/versionInfo.sh"

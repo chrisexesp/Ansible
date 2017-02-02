@@ -1,0 +1,14 @@
+ - name: Remove Old Response File
+   file: path='/tmp/rsp/createWebServer.py' state=absent
+
+ - name: Create Web Server Response File
+   template:
+     src: createWebServer.conf.j2
+     dest: /tmp/rsp/createWebServer.py
+
+ - name: Create Web Server
+   shell: "{{WASND_Path}}/bin/wsadmin.sh -lang jython -f /tmp/rsp/createWebServer.py"
+
+ - name: Change Plugins Owner
+   shell: if [ "{{HostName}}" -eq "{{IHS_HostName}}" ]; then chown -R root {{WAS_Plugins_Path}}/config; fi
+   when: inventory_hostname in groups['wasndManager']

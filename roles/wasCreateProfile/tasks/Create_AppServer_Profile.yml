@@ -1,0 +1,6 @@
+ - name: Create WASND AppServer Profile
+   shell:  "{{WASND_Path}}/bin/manageprofiles.sh -listProfiles | grep -w {{WAS_ProfileName}}; if [ $? -eq 0 ]; then echo The AppServer Profile has been created; else {{WASND_Path}}/bin/manageprofiles.sh -create -profileName {{WAS_ProfileName}} -profilePath {{WAS_ProfilePath}} -hostName {{HostName}} -nodeName {{HostName}}{{NodeName}} -cellName {{HostName}}{{WAS_CellName}} -personalCertDN \"cn={{HostName}},ou={{HostName}}{{WAS_CellName}},ou={{HostName}}{{NodeName}},o=IBM,c=US\" -signingCertDN \"cn={{HostName}},ou=Root Certificate,ou={{HostName}}{{WAS_CellName}},ou={{HostName}}{{NodeName}},o=IBM,c=US\" -serverName {{WAS_ServerName}} -personalCertValidityPeriod 15 -signingCertValidityPeriod 25 -keyStorePassword WebAS -enableAdminSecurity true -isDefault -adminUserName {{WAS_User}} -adminPassword {{WAS_User_Password}}; fi"
+
+ - name: Check AppServer Profile
+   shell: cat {{WAS_ProfilePath}}/logs/AboutThisProfile.txt
+

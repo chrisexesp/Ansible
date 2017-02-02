@@ -1,0 +1,13 @@
+ - name: Remove Old Response File
+   file: path='/tmp/rsp/createCluster.py' state=absent
+   when: inventory_hostname in groups['wasndManager']
+
+ - name: Create Cluster Response File
+   template:
+     src: createCluster.conf.j2
+     dest: /tmp/rsp/createCluster.py
+   when: inventory_hostname in groups['wasndManager']
+
+ - name: Create Cluster
+   shell: "{{WASND_Path}}/bin/wsadmin.sh -lang jython -f /tmp/rsp/createCluster.py"
+   when: inventory_hostname in groups['wasndManager']

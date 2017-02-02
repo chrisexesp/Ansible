@@ -1,0 +1,10 @@
+ - name: Remove Old Response File
+   file: path='/tmp/rsp/pct_ihs855_{{IHSCFG_Hostname}}.rsp' state=absent
+
+ - name: Create WCT Response File
+   template:
+     src: pct_ihs855_{{IHS_Connection_Type}}.rsp
+     dest: /tmp/rsp/pct_ihs855_{{IHSCFG_Hostname}}.rsp
+
+ - name: Configure WCT
+   shell: "{{WAS_Toolbox_Path}}/WCT/wctcmd.sh -tool pct -createDefinition -defLocName WebPlugins -defLocPathname {{WAS_Plugins_Path}} -response /tmp/rsp/pct_ihs855_{{IHSCFG_Hostname}}.rsp"

@@ -1,0 +1,3 @@
+ - name: Start Node
+   shell: "{{WAS_ProfilePath}}/bin/serverStatus.sh nodeagent -username {{WAS_User}} -password {{WAS_User_Password}} | grep ADMU0508I; if [ $? -ne 0 ]; then {{WAS_ProfilePath}}/bin/startNode.sh; else echo Node has been started; fi"
+  

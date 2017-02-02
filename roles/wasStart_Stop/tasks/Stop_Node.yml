@@ -1,0 +1,3 @@
+ - name: Stop Node
+   shell: "{{WAS_ProfilePath}}/bin/serverStatus.sh -all -username {{WAS_User}} -password {{WAS_User_Password}} | grep The Node Agent \"nodeagent\" cannot be reached; if [ $? -ne 0 ]; then {{WAS_ProfilePath}}/bin/stopNode.sh -username {{WAS_User}} -password {{WAS_User_Password}}; else echo Node has been stopped; fi"
+  

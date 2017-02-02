@@ -1,0 +1,21 @@
+ - name: Remove Old Response File
+   file: path='/tmp/rsp/WAS_Plugins_Installation.xml' state=absent
+
+ - name: Copy Response Template File
+   copy: 
+     src: "{{Response_Template_File_Directory}}/WAS_Plugins_Installation.xml"
+     dest: /tmp/rsp/WAS_Plugins_Installation.xml
+     owner: root
+     mode: 0755
+
+ - name: Edit Response File
+   replace: 
+     dest: /tmp/rsp/WAS_Plugins_Installation.xml
+     regexp: WAS_Plugins_Install_Path
+     replace: "{{WAS_Plugins_Path}}"
+
+ - name: Install WAS Plugins
+   shell: if [ ! -d {{WAS_Plugins_Path}} ]; then /opt/IBM/InstallationManager/eclipse/tools/imcl input /tmp/rsp/WAS_Plugins_Installation.xml -acceptLicense -sP; else echo "WAS Plugins File System exists"; fi
+
+ - name: Validate WAS Plugins Installation
+   shell: "{{WAS_Plugins_Path}}/bin/versionInfo.sh"

@@ -1,0 +1,12 @@
+ - name: Edit WAS Host Table for WAS
+   lineinfile: dest=/etc/hosts regexp='.*{{item}}$' line='{{hostvars[item].ansible_default_ipv4.address}} {{item}}' state=present
+   with_items: '{{groups.wasnd}}'
+   tags:
+     - hosts
+
+ - name: Edit WAS Host Table for IHS
+   lineinfile: dest=/etc/hosts regexp='.*{{item}}$' line='{{hostvars[item].ansible_default_ipv4.address}} {{item}}' state=present
+   with_items: '{{groups.ihs}}'
+   tags:
+     - hosts
+

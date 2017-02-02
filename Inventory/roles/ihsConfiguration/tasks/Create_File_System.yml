@@ -1,0 +1,5 @@
+ - name: Create log path
+   file: path='/home/logs/ihs' state=directory 
+
+ - name: Create cert path
+   file: path='/home/certs/ihs' state=directory 

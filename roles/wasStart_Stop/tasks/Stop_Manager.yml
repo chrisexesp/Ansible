@@ -1,0 +1,3 @@
+ - name: Stop Manager
+   shell: "{{WASND_ProfilePath}}/bin/serverStatus.sh -all -username {{WASND_User}} -password {{WASND_User_Password}} | grep ADMU0509I; if [ $? -ne 0 ]; then {{WASND_ProfilePath}}/bin/stopManager.sh -username {{WASND_User}} -password {{WASND_User_Password}}; else echo Manager has been stopped; fi"
+   when: inventory_hostname in groups['wasndManager']

@@ -1,0 +1,17 @@
+WASND_Path: /opt/IBM/WebSphere/AppServer
+NodeName: Node01
+WAS_CellName: Node01Cell
+WAS_ClusterName: pco_cluster
+WAS_HostTable: 192.168.11.133 node1,192.168.11.149 node2
+WAS_InstallPath: /opt/IBM/WebSphere/AppServer/bin/
+WAS_KeyStoreName: CMSKeyStore
+WAS_Manager_CellName: node1Cell01
+WAS_Manager_HostName: node1
+WAS_ProfileTemplatePath: /opt/IBM/WebSphere/AppServer/profileTemplates/default
+WAS_SoapPort: 8879
+WAS_User: wasadmin
+WAS_User_Password: pco12345
+WASND_ClusterMember_Weight: 2
+WASND_Install_Path: /opt/IBM/WebSphere/AppServer/bin/
+WASND_User: wasadmin
+WASND_User_Password: pco12345

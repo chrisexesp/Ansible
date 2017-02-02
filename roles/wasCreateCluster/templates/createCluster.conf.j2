@@ -1,0 +1,8 @@
+clusterName = "{{WAS_ClusterName}}"
+clusterID = AdminConfig.getid("/ServerCluster:"+clusterName)
+
+if clusterID.find(clusterName) >= 0 :
+ print "{{WAS_ClusterName}} exists"
+else:
+ AdminTask.createCluster('[-clusterConfig [-clusterName {{WAS_ClusterName}} -preferLocal true]]')
+ AdminConfig.save()

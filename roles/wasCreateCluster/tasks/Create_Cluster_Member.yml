@@ -1,0 +1,10 @@
+ - name: Remove Old Response File
+   file: path='/tmp/rsp/createClusterMember.py' state=absent
+
+ - name: Create Cluster Member Response File
+   template:
+     src: createClusterMember.conf.j2
+     dest: /tmp/rsp/createClusterMember.py
+
+ - name: Create Cluster Member
+   shell: "{{WASND_Path}}/bin/wsadmin.sh -lang jython -f /tmp/rsp/createClusterMember.py"

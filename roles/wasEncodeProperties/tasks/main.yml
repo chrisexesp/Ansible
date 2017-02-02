@@ -1,0 +1,5 @@
+ - include: /etc/ansible/roles/wasStart_Stop/tasks/Stop_Manager.yml
+ - include: /etc/ansible/roles/wasStart_Stop/tasks/Stop_Node.yml
+ - include: Encode_Properties.yml
+ - include: Encode_Properties_Manager.yml
+ - include: Encode_Properties_AppServer.yml

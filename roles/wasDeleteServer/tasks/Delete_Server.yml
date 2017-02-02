@@ -1,0 +1,10 @@
+ - name: Remove Old Response File
+   file: path='/tmp/rsp/deleteServer.py' state=absent
+
+ - name: Create Delete Server Response File
+   template:
+     src: deleteServer.conf.j2
+     dest: /tmp/rsp/deleteServer.py
+
+ - name: Delete Server
+   shell: "{{WASND_Path}}/bin/wsadmin.sh -lang jython -f /tmp/rsp/deleteServer.py"

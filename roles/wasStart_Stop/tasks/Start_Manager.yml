@@ -1,0 +1,3 @@
+ - name: Start Manager
+   shell: "{{WASND_ProfilePath}}/bin/serverStatus.sh -all -username {{WASND_User}} -password {{WASND_User_Password}} | grep ADMU0508I; if [ $? -ne 0 ]; then {{WASND_ProfilePath}}/bin/startManager.sh; else echo Manager has been started; fi"
+   when: inventory_hostname in groups['wasndManager']

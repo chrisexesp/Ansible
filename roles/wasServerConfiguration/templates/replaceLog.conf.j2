@@ -1,0 +1,9 @@
+vselist = AdminConfig.list('VariableSubstitutionEntry',AdminConfig.getid('/Cell:{{WAS_Manager_CellName}}/Node:{{HostName}}{{NodeName}}/Server:{{WAS_ServerName}}/')).split('\n')
+for vse in vselist:
+	if vse != '' and AdminConfig.showAttribute(vse,'symbolicName') == 'SERVER_LOG_ROOT':
+		print 'BEFORE:'
+		print (vse,AdminConfig.showAttribute(vse,'symbolicName'),AdminConfig.showAttribute(vse,'value'))
+		AdminConfig.modify(vse,[['value','{{WAS_LogPath}}']])
+		print 'AFTER:'
+		print (vse,AdminConfig.showAttribute(vse,'symbolicName'),AdminConfig.showAttribute(vse,'value'))
+	continue

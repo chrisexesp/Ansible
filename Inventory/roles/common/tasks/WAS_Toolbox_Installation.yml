@@ -1,0 +1,21 @@
+ - name: Remove Old Response File
+   file: path='/tmp/rsp/WAS_Toolbox_Installation.xml' state=absent
+
+ - name: Copy Response Template File
+   copy: 
+     src: "{{Response_Template_File_Directory}}/WAS_Toolbox_Installation.xml"
+     dest: /tmp/rsp/WAS_Toolbox_Installation.xml
+     owner: root
+     mode: 0755
+
+ - name: Edit Response File
+   replace: 
+     dest: /tmp/rsp/WAS_Toolbox_Installation.xml
+     regexp: WAS_Toolbox_Install_Path
+     replace: "{{WAS_Toolbox_Path}}"
+
+ - name: Install WAS Toolbox
+   shell: if [ ! -d {{WAS_Toolbox_Path}} ]; then /opt/IBM/InstallationManager/eclipse/tools/imcl input /tmp/rsp/WAS_Toolbox_Installation.xml -acceptLicense -sP; else echo "WAS Toolbox File System exists"; fi
+
+ - name: Validate WAS Toolbox Installation
+   shell: "{{WAS_Toolbox_Path}}/bin/versionInfo.sh"

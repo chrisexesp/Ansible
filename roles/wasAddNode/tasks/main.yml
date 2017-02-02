@@ -1,0 +1,2 @@
+ - include: /etc/ansible/roles/wasStart_Stop/tasks/Start_Manager.yml
+ - include: Add_Node.yml

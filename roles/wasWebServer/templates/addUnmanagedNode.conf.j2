@@ -1,0 +1,20 @@
+nodes = AdminTask.listNodes().split()
+
+if "{{HostName}}" == "{{IHS_HostName}}":
+ if "{{IHS_HostName}}Node02" not in nodes:
+  AdminTask.createUnmanagedNode('[-nodeName {{IHS_HostName}}Node02 -hostName {{IHS_HostName}} -nodeOperatingSystem aix]')
+  AdminTask.listNodes()
+  AdminConfig.save()
+ else:
+  print "#"
+  print "Unmanaged Node {{IHS_HostName}}Node02 exists"
+  print "#"
+else:
+ if "{{IHS_HostName}}{{NodeName}}" not in nodes:
+  AdminTask.createUnmanagedNode('[-nodeName {{IHS_HostName}}{{NodeName}} -hostName {{IHS_HostName}} -nodeOperatingSystem aix]')
+  AdminTask.listNodes()
+  AdminConfig.save()
+ else:
+  print "#"
+  print "Unmanaged Node {{IHS_HostName}}{{NodeName}} exists"
+  print "#"

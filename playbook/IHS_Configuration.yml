@@ -1,0 +1,6 @@
+---
+  - hosts: ihs
+    remote_user: root 
+    roles:
+     # - ihsInstallation
+      - ihsConfiguration
