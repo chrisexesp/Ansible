@@ -1,0 +1,10 @@
+---
+ - hosts: wasnd
+   remote_user: root
+   
+   roles:
+     - wasndInstallation
+     - ihsInstallation
+     - common
+
+
