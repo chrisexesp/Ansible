@@ -60,7 +60,7 @@ Tower server errors /var/log/tower
 
 Supervisors logs /var/log/supervisor/
 
-# Ansible Tower - change port of admin console
+# Ansible Tower - changes ports of admin console
 
 /etc/httpd/conf/httpd.conf
 
