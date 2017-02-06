@@ -44,8 +44,15 @@ ansible all -a "/bin/echo hello"
 
 ./semaphore -config /etc/ansible/semaphore_config.json
 
-#Ansible Tower
-
-#Import Inventory
+#Ansible Tower - Import Inventory
 
 tower-manage inventory_import --source=/etc/ansible/ --inventory-name="WAS Inventory"
+
+# Ansible Tower - basic settings (/etc/tower/seeting.py)
+
+User: awx
+
+Project Root: /var/lib/awx/projects
+
+Log (Job Status) /var/lib/awx/job_status
+
