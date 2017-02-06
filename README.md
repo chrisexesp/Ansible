@@ -46,7 +46,7 @@ ansible all -a "/bin/echo hello"
 
 # Ansible Tower - Import Inventory
 
-tower-manage inventory_import --source=/etc/ansible/ --inventory-name="WAS Inventory"
+tower-manage inventory_import --source=/etc/ansible/Inventory --inventory-name="WAS Inventory"
 
 # Ansible Tower - basic settings (/etc/tower/seeting.py)
 
