@@ -1,0 +1,21 @@
+---
+ - hosts: all
+   remote_user: root
+   
+   tasks:
+     - shell: echo "Hello World"
+
+ - hosts: all
+   remote_user: root
+   
+   tasks:
+     - shell: echo "Ansible"
+       tags: ansible
+
+ - hosts: all
+   remote_user: root
+   
+   tasks:
+     - shell: echo "Tower"
+       tags: tower
+
