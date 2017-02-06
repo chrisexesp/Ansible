@@ -44,7 +44,7 @@ ansible all -a "/bin/echo hello"
 
 ./semaphore -config /etc/ansible/semaphore_config.json
 
-#Ansible Tower - Import Inventory
+# Ansible Tower - Import Inventory
 
 tower-manage inventory_import --source=/etc/ansible/ --inventory-name="WAS Inventory"
 
@@ -60,3 +60,18 @@ Tower server errors /var/log/tower
 
 Supervisors logs /var/log/supervisor/
 
+# Ansible Tower - change port of admin console
+
+/etc/httpd/conf/httpd.conf
+
+/etc/httpd/conf.d/ssl.conf
+
+/etc/httpd/awx-httpd-80.conf
+
+/etc/httpd/awx-httpd-443.conf
+
+/etc/tower/setting.py
+
+/var/lib/awx/venv/tower/lib/python2.7/site-packages/awx/plugins/inventory/awxrest.py
+
+Allow port for SElinux
