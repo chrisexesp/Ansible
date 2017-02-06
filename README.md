@@ -56,3 +56,7 @@ Project Root: /var/lib/awx/projects
 
 Log (Job Status) /var/lib/awx/job_status
 
+Tower server errors /var/log/tower
+
+Supervisors logs /var/log/supervisor/
+
